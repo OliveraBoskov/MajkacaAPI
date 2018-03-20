@@ -52,4 +52,13 @@ public class UserService {
 			return user;
 		}
 	}
+	
+	public User editUser(String email, String password, String username){
+		User user = userRepository.findByUsername(username);
+		user.setEmail(email);
+		user.setPassword(password);
+		userRepository.save(user);
+		
+		return user;
+	}
 }

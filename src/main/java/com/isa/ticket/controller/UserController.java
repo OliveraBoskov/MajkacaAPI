@@ -3,6 +3,7 @@ package com.isa.ticket.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,6 +63,16 @@ public class UserController {
 			return new ResponseMessageDTO("Neuspesno brisanje");
 		}
 		return new ResponseMessageDTO("Uspesno ste obrisali nalog");
+	}
+	
+	@PutMapping("/editUser")
+	public ResponseMessageDTO editUser(@RequestBody RegistrationDTO registrationDTO){
+		User user = userService.editUser(registrationDTO.getEmail(), registrationDTO.getPassword(), 
+										registrationDTO.getUsername());
+		if(user == null){
+			return new ResponseMessageDTO("Neuspesna izmena podataka korisnika");
+		}
+		return new ResponseMessageDTO("Uspesno ste izmenili podatke korisnika");
 	}
 	
 	
