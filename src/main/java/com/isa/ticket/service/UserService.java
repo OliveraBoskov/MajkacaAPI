@@ -43,4 +43,8 @@ public class UserService {
 		return user;
 	}
 
+	public User deleteAccount(String email) {
+		return null;
+	}
+
 }
