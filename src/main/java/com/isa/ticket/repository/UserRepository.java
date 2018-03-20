@@ -9,4 +9,5 @@ import com.isa.ticket.domain.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 		User findByUsername(String username);
 		User findByActivationLink(String key);
+		User findByEmail(String email);
 }

@@ -85,6 +85,14 @@ public class User implements Serializable {
 	public void setActivationLink(String activationLink) {
 		this.activationLink = activationLink;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", active="
+				+ active + ", activationLink=" + activationLink + ", role=" + role + "]";
+	}
+	
+	
 	
 	
 	

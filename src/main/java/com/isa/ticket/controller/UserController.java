@@ -2,16 +2,17 @@ package com.isa.ticket.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.isa.ticket.controller.dto.DeleteDTO;
 import com.isa.ticket.controller.dto.LogInDTO;
 import com.isa.ticket.controller.dto.RegistrationDTO;
 import com.isa.ticket.controller.dto.ResponseDTO;
+import com.isa.ticket.controller.dto.ResponseMessageDTO;
 import com.isa.ticket.domain.User;
 import com.isa.ticket.service.UserService;
 
@@ -25,7 +26,7 @@ public class UserController {
 	// @RequestMapping(value="signUp", method=RequestMethod.POST) isto kao ovo
 	// ispod
 	@PostMapping("/signUp")
-	public ResponseDTO signUp(@RequestBody RegistrationDTO registerDTO) {
+	public ResponseMessageDTO signUp(@RequestBody RegistrationDTO registerDTO) {
 		User user = new User();
 		user.setUsername(registerDTO.getUsername());
 		user.setEmail(registerDTO.getEmail());
@@ -33,7 +34,7 @@ public class UserController {
 
 		user = userService.registration(user);
 
-		return new ResponseDTO("localhost:8090/userActivation?key="+user.getActivationLink());
+		return new ResponseMessageDTO("localhost:8090/userActivation?key="+user.getActivationLink());
 	}
 
 	@PostMapping("/logIn")
@@ -52,6 +53,15 @@ public class UserController {
 		}
 		
 		return new ResponseDTO("Uspesno",user);
+	}
+	
+	@PostMapping("/deleteAccount")
+	public ResponseMessageDTO deleteAccount(@RequestBody DeleteDTO deleteDTO){
+		User user = userService.deleteAccount(deleteDTO.getEmail(), deleteDTO.getPassword());
+		if(user == null){
+			return new ResponseMessageDTO("Neuspesno brisanje");
+		}
+		return new ResponseMessageDTO("Uspesno ste obrisali nalog");
 	}
 	
 	

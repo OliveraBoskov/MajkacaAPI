@@ -21,8 +21,8 @@ public class UserService {
 		user.setRole("USER");
 		user.setActivationLink(UUID.randomUUID().toString());
 		
-		userRepository.save(user);
 		
+		userRepository.save(user);
 		return user;
 	}
 	
@@ -43,8 +43,14 @@ public class UserService {
 		return user;
 	}
 	
-	public User deleteAccount(String email) {
-		return null;
+	public User deleteAccount(String email, String password) {
+		User user = userRepository.findByEmail(email);
+		if(!user.getPassword().equals(password)){
+				return null;
+		}else{
+			userRepository.delete(user);
+			return user;
+		}
 	}
 
 }
