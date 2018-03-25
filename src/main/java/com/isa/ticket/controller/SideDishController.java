@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isa.ticket.controller.dto.AddSideDishDTO;
+import com.isa.ticket.controller.dto.DeleteDTO;
+import com.isa.ticket.controller.dto.DeleteSideDishDTO;
 import com.isa.ticket.controller.dto.ResponseMessageDTO;
 import com.isa.ticket.domain.SideDish;
+import com.isa.ticket.domain.User;
 import com.isa.ticket.service.SideDishService;
 
 @RestController
@@ -25,10 +28,22 @@ public class SideDishController {
 		sideDish.setPrice(addSideDishDTO.getPrice());
 		sideDish.setAvailable(addSideDishDTO.isAvailable());
 		
-		sideDish = sideDishService.create(sideDish);
+		sideDish = sideDishService.addSideDish(sideDish);
 		
 		return new ResponseMessageDTO("Uspesno dodat prilog!");
 
 	}
+	
+	@PostMapping("/deleteSideDish")
+	public ResponseMessageDTO deleteSideDish(@RequestBody DeleteSideDishDTO deleteSideDishDTO){
+		SideDish sideDish = sideDishService.deleteSideDish(deleteSideDishDTO.getName(), 
+							deleteSideDishDTO.getPrice(), deleteSideDishDTO.isAvailable());
+		if(sideDish == null){
+			return new ResponseMessageDTO("Neuspesno brisanje priloga!");
+		}
+		
+		return new ResponseMessageDTO("Uspesno ste obrisali prilog!");
+	}
+	
 
 }
