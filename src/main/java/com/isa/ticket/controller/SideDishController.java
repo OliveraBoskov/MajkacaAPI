@@ -25,7 +25,9 @@ public class SideDishController {
 		sideDish.setPrice(addSideDishDTO.getPrice());
 		sideDish.setAvailable(addSideDishDTO.isAvailable());
 		
-		return null;
+		sideDish = sideDishService.create(sideDish);
+		
+		return new ResponseMessageDTO("Uspesno dodat prilog!");
 
 	}
 
