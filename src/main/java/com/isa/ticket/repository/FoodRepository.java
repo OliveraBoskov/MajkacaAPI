@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.isa.ticket.domain.Food;
 
+
 @Repository
 public interface FoodRepository extends JpaRepository<Food, Long> {
-
+	
+	
 }

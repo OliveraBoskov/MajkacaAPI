@@ -1,5 +1,7 @@
 package com.isa.ticket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,17 @@ public class SideDishService {
 		
 		return sideDish;
 	}
+	
+	public List<SideDish> getAll(){
+		return sideDishRepository.findAll();
+	}
+	
+	public SideDish getSelectedSideDish(String name){
+		SideDish sideDish = sideDishRepository.findByName(name);
+		return sideDish;
+	}
+	
+	
 	
 	
 

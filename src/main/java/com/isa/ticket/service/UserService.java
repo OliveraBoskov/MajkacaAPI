@@ -1,5 +1,6 @@
 package com.isa.ticket.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,16 @@ public class UserService {
 		user.setPassword(password);
 		userRepository.save(user);
 		
+		return user;
+	}
+	
+	public List<User> getAll(){
+		return userRepository.findAll();
+	}
+	
+	public User getSelectedUser(String email){
+		System.out.println("korisnikov email:" +email);
+		User user = userRepository.findByEmail(email);
 		return user;
 	}
 }

@@ -1,7 +1,12 @@
 package com.isa.ticket.controller;
 
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isa.ticket.controller.dto.DeleteDTO;
+import com.isa.ticket.controller.dto.GetUsersDTO;
 import com.isa.ticket.controller.dto.LogInDTO;
 import com.isa.ticket.controller.dto.RegistrationDTO;
 import com.isa.ticket.controller.dto.ResponseDTO;
 import com.isa.ticket.controller.dto.ResponseMessageDTO;
+import com.isa.ticket.controller.dto.UserDTO;
 import com.isa.ticket.domain.User;
 import com.isa.ticket.service.UserService;
 
@@ -84,6 +91,20 @@ public class UserController {
 		}
 		return new ResponseDTO ("Uspesno");
 	}
+	
+	@GetMapping("/getUsers")
+	public GetUsersDTO getUsers(){
+		List<User> tempList = userService.getAll();
+		return new GetUsersDTO("Uspesno", tempList);
+	}
+	
+	@GetMapping("/profile/{email}")
+	public UserDTO getSelectedUser(@PathVariable("email") String email){
+		User user = userService.getSelectedUser(email);
+		System.out.println(user);
+		return new UserDTO(user.getEmail(), user.getUsername());
+	}
+	
 	
 	
 	
