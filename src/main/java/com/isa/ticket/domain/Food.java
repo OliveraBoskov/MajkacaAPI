@@ -21,7 +21,9 @@ public class Food implements Serializable {
 	private String name;
 	private float price;
 	
+	private String type;
 	private String description;
+	
 	
 	public Food() {
 		
@@ -57,6 +59,14 @@ public class Food implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 
