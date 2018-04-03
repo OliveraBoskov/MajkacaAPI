@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.isa.ticket.domain.Food;
 import com.isa.ticket.domain.Restaurant;
+import com.isa.ticket.domain.SideDish;
 import com.isa.ticket.repository.FoodRepository;
 
 
@@ -24,5 +25,13 @@ public class FoodService {
 	
 	public List<Food> getAll() {
 		return foodRepository.findAll();
+	}
+	
+	public Food deleteFood(String name) {
+		Food food = foodRepository.findByName(name);
+		
+		foodRepository.delete(food);
+		
+		return food;
 	}
 }

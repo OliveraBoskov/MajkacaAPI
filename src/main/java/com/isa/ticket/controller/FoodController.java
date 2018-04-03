@@ -3,6 +3,7 @@ package com.isa.ticket.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isa.ticket.controller.dto.CreateFoodDTO;
+import com.isa.ticket.controller.dto.DeleteFoodDTO;
 import com.isa.ticket.controller.dto.GetFoodDTO;
 import com.isa.ticket.controller.dto.GetRestaurantsDTO;
 import com.isa.ticket.controller.dto.ResponseMessageDTO;
@@ -44,10 +46,14 @@ public class FoodController {
 		return new GetFoodDTO("Uspesno", tempList);
 	}
 	
-	//@GetMapping("/deleteFood")
-	//public ResponseMessageDTO deleteFood(@RequestBody DeleteFoodDTO deleteFoodDTO) {
-		
+	@DeleteMapping("/deleteFood")
+	public ResponseMessageDTO deleteFood(@RequestBody DeleteFoodDTO deleteFoodDTO) {
+		Food food=foodService.deleteFood(deleteFoodDTO.getName());
+		if(food == null) {
+			return new ResponseMessageDTO("Neuspesno brisanje hrane!");
+		}
+		return new ResponseMessageDTO("Uspesno ste obrisali hranu!");
 	}
-//}
+}
 
 
