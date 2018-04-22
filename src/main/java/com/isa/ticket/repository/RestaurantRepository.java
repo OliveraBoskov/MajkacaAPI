@@ -10,6 +10,7 @@ import com.isa.ticket.domain.Restaurant;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	
+	Restaurant findOneById(Long id);
 	Restaurant findByName(String name);
 	List<Restaurant> findAll();
 }
