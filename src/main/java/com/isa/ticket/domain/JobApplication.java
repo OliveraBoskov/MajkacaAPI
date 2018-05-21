@@ -26,6 +26,20 @@ public class JobApplication {
 	@ManyToOne
 	private Restaurant restaurant;
 	
+	private String status; //da li je prijava za posao prihvacena ili odbijena
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public JobApplication() {
 		super();
 	}

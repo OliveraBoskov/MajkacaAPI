@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmins:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<p th:text="${userKey.username}">
+			Dear
+		</p>
+		
+		<p>
+			Click on this link to activate your profile: 
+		</p>
+		localhost:8090/api/auth/activate?key=
+		<p th:text="${userKey.activationLink}">
+		</p>
+	</body>
+</html>

@@ -42,7 +42,7 @@ public class FoodController {
 	@GetMapping("/getfood")
 	public GetFoodDTO getFood() {
 		List<Food> tempList = foodService.getAll();
-		System.out.println(tempList);
+
 		return new GetFoodDTO("Uspesno", tempList);
 	}
 	
