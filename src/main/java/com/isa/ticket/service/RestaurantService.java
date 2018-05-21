@@ -29,6 +29,11 @@ public class RestaurantService {
 		Restaurant restaurant = restaurantRepository.findByName(name);
 		return restaurant;
 	}
+	
+	public Restaurant getSingleRestaurant(Long id) {
+		Restaurant restaurant = restaurantRepository.findOneById(id);
+		return restaurant;
+	}
 
 
 }

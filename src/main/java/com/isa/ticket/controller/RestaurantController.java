@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.isa.ticket.controller.dto.CreateRestaurantDTO;
 import com.isa.ticket.controller.dto.GetRestaurantsDTO;
+import com.isa.ticket.controller.dto.GetSingleRestaurantDTO;
 import com.isa.ticket.controller.dto.ResponseMessageDTO;
 import com.isa.ticket.controller.dto.RestaurantDTO;
 import com.isa.ticket.domain.Restaurant;
@@ -49,6 +50,13 @@ public class RestaurantController {
 	public RestaurantDTO getSelectedRestaurant(@PathVariable("name") String name){
 		Restaurant restaurant = restaurantService.getSelectedRestaurant(name);
 		return new RestaurantDTO(restaurant.getName(), restaurant.getLocation());
+	}
+	
+	@GetMapping("/getSingleRestaurant/{id}")
+	public GetSingleRestaurantDTO getSingleRestaurant(@PathVariable("id") Long id){
+		Restaurant restaurant = restaurantService.getSingleRestaurant(id);
+		System.out.println(restaurant);
+		return new GetSingleRestaurantDTO(restaurant);
 	}
 	
 	
