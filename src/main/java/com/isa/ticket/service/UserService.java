@@ -74,7 +74,6 @@ public class UserService {
 	}
 	
 	public User getSelectedUser(String email){
-		System.out.println("korisnikov email:" +email);
 		User user = userRepository.findOneByEmail(email);
 		return user;
 	}
@@ -85,4 +84,5 @@ public class UserService {
 		user.setActivationLink(null);
 		userRepository.save(user);
 	}
+	
 }

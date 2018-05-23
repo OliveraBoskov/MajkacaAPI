@@ -19,6 +19,25 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	public User(User user) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.active = active;
+		this.activationLink = activationLink;
+		this.role = role;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@NotNull
 	@Size(min=5, max=10)
 	@Column(name="ime", unique = true)

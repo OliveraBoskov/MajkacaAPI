@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isa.ticket.controller.dto.DeleteDTO;
+import com.isa.ticket.controller.dto.GetSingleUserDTO;
 import com.isa.ticket.controller.dto.GetUsersDTO;
 import com.isa.ticket.controller.dto.LogInDTO;
 import com.isa.ticket.controller.dto.RegistrationDTO;
@@ -131,6 +132,15 @@ public class AccountController {
 	public void activateAccount(@RequestParam(value = "key") String key){
 		userService.activateAccount(key);
 	}
+	
+	@GetMapping("/getSingleUser/{email}")
+	public GetSingleUserDTO getSingleUser(@PathVariable("email") String email){
+		User user = userService.getSelectedUser(email);
+		System.out.println(user);
+		return new GetSingleUserDTO(user);
+	}
+	
+	
 	
 	
 	
