@@ -18,11 +18,11 @@ public class GetSingleFoodDTO {
 	
 	public GetSingleFoodDTO(Food food) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.typeF = typeF;
-		this.description = description;
+		this.id = food.getId();
+		this.name = food.getName();
+		this.price = food.getPrice();
+		this.typeF = food.getTypeF();
+		this.description = food.getDescription();
 	}
 
 
