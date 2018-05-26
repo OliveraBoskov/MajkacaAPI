@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.isa.ticket.controller.dto.CreateFoodDTO;
 import com.isa.ticket.controller.dto.DeleteFoodDTO;
 import com.isa.ticket.controller.dto.GetFoodDTO;
 import com.isa.ticket.controller.dto.GetRestaurantsDTO;
+import com.isa.ticket.controller.dto.GetSingleFoodDTO;
 import com.isa.ticket.controller.dto.ResponseMessageDTO;
 import com.isa.ticket.domain.Food;
 import com.isa.ticket.domain.Restaurant;
@@ -53,6 +55,13 @@ public class FoodController {
 			return new ResponseMessageDTO("Neuspesno brisanje hrane!");
 		}
 		return new ResponseMessageDTO("Uspesno ste obrisali hranu!");
+	}
+	
+	@GetMapping("/getSingleFood/{id}")
+	public GetSingleFoodDTO getSingleFood(@PathVariable("id") Long id){
+		Food food = foodService.getSingleFood(id);
+		System.out.println(food);
+		return new GetSingleFoodDTO(food);
 	}
 }
 

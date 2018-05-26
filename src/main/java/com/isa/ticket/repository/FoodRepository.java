@@ -10,5 +10,6 @@ import com.isa.ticket.domain.SideDish;
 @Repository
 public interface FoodRepository extends JpaRepository<Food, Long> {
 	Food findByName(String name);
+	Food findOneById(Long id);
 	
 }

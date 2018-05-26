@@ -34,4 +34,9 @@ public class FoodService {
 		
 		return food;
 	}
+	
+	public Food getSingleFood(Long id) {
+		Food food = foodRepository.findOneById(id);
+		return food;
+	}
 }
