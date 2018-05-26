@@ -34,8 +34,11 @@ public class FoodController {
 		food.setName(createFoodDTO.getName());
 		food.setPrice(createFoodDTO.getPrice());
 		food.setDescription(createFoodDTO.getDescription());
+		food.setTypeF(createFoodDTO.getTypeF());
 		
 		food=foodService.create(food);
+		
+		foodService.setRelationshipBetweenFoodAndSideDish(food.getId(), createFoodDTO.getSideDishIds());
 		
 		return new ResponseMessageDTO("Uspesno dodato!");
 		

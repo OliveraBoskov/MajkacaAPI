@@ -8,4 +8,5 @@ import com.isa.ticket.domain.SideDish;
 @Repository
 public interface SideDishRepository extends JpaRepository<SideDish, Long>{
 	SideDish findByName(String name);
+	SideDish findOneById(Long id);
 }
