@@ -39,7 +39,7 @@ public class FoodController {
 		food=foodService.create(food);
 		
 		foodService.setRelationshipBetweenFoodAndSideDish(food.getId(), createFoodDTO.getSideDishIds());
-		
+
 		return new ResponseMessageDTO("Uspesno dodato!");
 		
 	}
